@@ -1,22 +1,18 @@
-# ==============================================================================
-# Dockerfile for Render Deployment & Local Docker Testing
-# Base Image: Official lightweight PHP 8.2 with Apache Web Server
-# ==============================================================================
+FROM php:8.5-apache
 
-FROM php:8.2-apache
-
-# Set working directory
 WORKDIR /var/www/html
 
-# Copy all application files to the Apache document root
+# Copy the registration application
 COPY . /var/www/html/
 
-# Set proper ownership and permissions for the web server
+# Set permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Expose standard HTTP port 80 (Render automatically detects this exposed port)
-EXPOSE 80
+# Render's default web service port
+ENV PORT=10000
 
-# Start Apache in the foreground
-CMD ["apache2-foreground"]
+# Configure Apache to use Render's PORT
+CMD ["sh", "-c", "sed -i 's/Listen 80/Listen ${PORT}/' /etc/apache2/ports.conf && sed -i 's/<VirtualHost \\*:80>/<VirtualHost *:${PORT}>/' /etc/apache2/sites-available/000-default.conf && apache2-foreground"]
+
+EXPOSE 10000
