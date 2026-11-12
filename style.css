@@ -1,0 +1,464 @@
+/* ==========================================================================
+   College Student Registration Portal - Stylesheet
+   Academic Year 2024-2025 | Web Technology Lab Assignment
+   ========================================================================== */
+
+/* --- CSS Variables for Consistent Theming --- */
+:root {
+    --primary-navy: #1a365d;       /* Main Navy Blue */
+    --primary-blue: #2b6cb0;       /* Royal Blue Accent */
+    --light-blue: #ebf8ff;         /* Soft Blue Background Tint */
+    --hover-blue: #2c5282;         /* Button Hover */
+    --accent-gold: #d69e2e;        /* Crest / Badge Gold */
+    --text-dark: #2d3748;          /* Body Text */
+    --text-muted: #718096;         /* Placeholders and Subtitles */
+    --bg-page: #f0f4f8;            /* Clean light grey-blue background */
+    --card-bg: #ffffff;            /* White card background */
+    --border-color: #cbd5e0;       /* Neutral input border */
+    --success-green: #38a169;      /* Success alert & valid border */
+    --error-red: #e53e3e;          /* Validation error color */
+    --error-bg: #fff5f5;           /* Error message highlight */
+    --border-radius: 8px;
+    --transition: all 0.25s ease-in-out;
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+/* --- Base & Reset Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Container Layout --- */
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* --- Header & College Branding Banner --- */
+.college-header {
+    background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+    color: #ffffff;
+    text-align: center;
+    padding: 28px 20px;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    box-shadow: var(--shadow);
+    position: relative;
+    border-bottom: 4px solid var(--accent-gold);
+}
+
+.college-emblem {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    font-size: 28px;
+}
+
+.college-header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.college-header p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    color: #e2e8f0;
+}
+
+.portal-tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* --- Main Card / Form Wrapper --- */
+.card {
+    background: var(--card-bg);
+    padding: 35px 40px;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: none;
+    margin-bottom: 25px;
+}
+
+.form-intro {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.form-intro h2 {
+    color: var(--primary-navy);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.form-intro p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* --- Form Layout & Grid --- */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.required {
+    color: var(--error-red);
+    margin-left: 4px;
+    font-weight: bold;
+}
+
+/* --- Inputs, Selects, Textareas --- */
+.form-control {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    background-color: #ffffff;
+    border: 1.5px solid var(--border-color);
+    border-radius: 6px;
+    transition: var(--transition);
+    outline: none;
+}
+
+.form-control:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.2);
+}
+
+/* Validation Status Classes applied via JS/jQuery */
+.form-control.is-invalid {
+    border-color: var(--error-red) !important;
+    background-color: #fffaf0;
+    padding-right: 36px;
+}
+
+.form-control.is-valid {
+    border-color: var(--success-green) !important;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* --- Radio Group (Gender) --- */
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 14px;
+    background: #f8fafc;
+    border: 1.5px solid var(--border-color);
+    border-radius: 6px;
+    min-height: 44px;
+}
+
+.radio-group.is-invalid {
+    border-color: var(--error-red) !important;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.radio-option input[type="radio"] {
+    accent-color: var(--primary-navy);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* --- Error Messages --- */
+.error-msg {
+    color: var(--error-red);
+    font-size: 0.8rem;
+    margin-top: 5px;
+    min-height: 16px;
+    display: none;
+    font-weight: 500;
+}
+
+/* Helper text */
+.field-hint {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin-top: 3px;
+}
+
+/* --- Button Styling --- */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn {
+    flex: 1;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-navy);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: var(--hover-blue);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(26, 54, 93, 0.25);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background-color: #edf2f7;
+    color: var(--text-dark);
+    border: 1.5px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: #e2e8f0;
+    color: #1a202c;
+}
+
+.btn-print {
+    background-color: #3182ce;
+    color: #ffffff;
+}
+
+.btn-print:hover {
+    background-color: #2b6cb0;
+}
+
+/* --- Success / Details View Styling (process.php) --- */
+.success-banner {
+    background-color: #f0fff4;
+    border: 1.5px solid #c6f6d5;
+    border-left: 6px solid var(--success-green);
+    padding: 18px 20px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.success-banner .badge-icon {
+    font-size: 2rem;
+    color: var(--success-green);
+}
+
+.success-banner h3 {
+    color: #22543d;
+    font-size: 1.15rem;
+    margin-bottom: 2px;
+}
+
+.success-banner p {
+    color: #276749;
+    font-size: 0.88rem;
+}
+
+.error-banner {
+    background-color: #fff5f5;
+    border: 1.5px solid #fed7d7;
+    border-left: 6px solid var(--error-red);
+    padding: 18px 20px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+}
+
+.error-banner h3 {
+    color: #9b2c2c;
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+}
+
+.error-banner ul {
+    margin-left: 20px;
+    color: #c53030;
+    font-size: 0.9rem;
+}
+
+/* Details Table */
+.details-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 10px;
+}
+
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+}
+
+.details-table th,
+.details-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.95rem;
+}
+
+.details-table th {
+    width: 35%;
+    background-color: #f7fafc;
+    color: var(--primary-navy);
+    font-weight: 600;
+}
+
+.details-table td {
+    color: var(--text-dark);
+}
+
+.details-table tr:hover td {
+    background-color: #f8fafc;
+}
+
+.usn-badge {
+    background-color: var(--light-blue);
+    color: var(--primary-blue);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: 1px solid #bee3f8;
+}
+
+/* --- Footer --- */
+.portal-footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    margin-top: 15px;
+}
+
+/* --- Print Styling --- */
+@media print {
+    body {
+        background: #ffffff;
+        padding: 0;
+    }
+    .form-actions,
+    .portal-footer,
+    .btn-print {
+        display: none !important;
+    }
+    .card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .card {
+        padding: 22px 18px;
+    }
+    .college-header {
+        padding: 20px 14px;
+    }
+    .college-header h1 {
+        font-size: 1.25rem;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .form-actions {
+        flex-direction: column;
+    }
+    .radio-group {
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+    .details-table th,
+    .details-table td {
+        padding: 10px 10px;
+        font-size: 0.88rem;
+    }
+}
