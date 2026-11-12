@@ -15,6 +15,7 @@ student-registration/
 ├── process.php         # Server-side data processing, sanitization & details rendering (PHP)
 ├── style.css           # Styling, color theme, typography & responsive layouts (CSS3)
 ├── script.js           # Client-side validation logic & DOM events (JavaScript + jQuery)
+├── server.js           # Instant local development server (runs with zero dependencies)
 ├── Dockerfile          # Configuration for Render deployment & Docker containerization
 ├── .dockerignore       # Ignored files for container builds
 └── README.md           # Documentation, viva guide, and deployment steps
